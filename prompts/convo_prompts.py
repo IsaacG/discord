@@ -16,15 +16,17 @@ class Prompts(commands.Cog):
 
   qualified_name = 'Conversation Prompter'
 
-  def __init__(self):
+  def __init__(self, prompts=None):
     super()
+    if prompts is None:
+      prompts = PROMPTS
     self.prompts = {}
-    for channel, filename in PROMPTS.items():
+    for channel, filename in prompts.items():
       with open(filename) as f:
         lines = f.read().split('\n')
-        lines = [l.strip() for l in lines if l.strip()]
+        lines = [l.strip() for l in lines]
+        lines = [l for l in lines if l and not l.startswith('#')]
         self.prompts[channel] = lines
-
 
   @commands.command()
   async def prompt(self, ctx, *args):
