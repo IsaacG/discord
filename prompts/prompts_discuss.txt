@@ -84,7 +84,7 @@
 84. If you could bring back one TV show that was canceled, which one would you bring back?
 85. What do you think about game shows? Do you have a favorite one?
 86. What’s the most underrated or overrated TV show?
-87. What do you think about reality TV? Why do you think it’s so popular?
+# 87. What do you think about reality TV? Why do you think it’s so popular?
 88. Do you like reality TV shows? Why or why not? If so, which ones?
 89. What is the most overrated movie?
 90. What’s your favorite genre of movie?
@@ -240,7 +240,7 @@
 241. If some of the lesser-known holidays were commercialized, what would the commercialization look like?
 242. If you could make a holiday, what would it be like? What traditions would it have? What would people eat on your holiday?
 243. What do you think of online education?
-244. What do you think of standardized tests?
+# 244. What do you think of standardized tests?
 245. Are bigger or smaller schools better?
 246. Is teaching a skill that can be taught?
 247. What will the future of education be?
@@ -347,22 +347,22 @@ CSW 70. Where do you usually go when you have time off?
 CSW 71. What are you most looking forward to in the next 10 years?
 CSW 72. What is the most annoying question that people ask you regularly?
 CSW 73. If you suddenly became a master at woodworking, what would you make?
-CSW 74. What could you give a 40-minute presentation on with absolutely no
+CSW 74. What could you give a 40-minute presentation on with absolutely no preparation?
 CSW 75. What amazing thing did you do that no one was around to see?
 CSW 76. What hobby would you get into if time and money weren’t an issue?
 CSW 77. If you didn’t have to sleep, what would you do with the extra time?
 CSW 78. When people come to you for help, what do they usually want help with?
-CSW 79. What is something you think everyone should do at least once in their
-CSW 80. What’s something you’ve been meaning to try but just haven’t gotten
+CSW 79. What is something you think everyone should do at least once in their lives?
+CSW 80. What’s something you’ve been meaning to try but just haven’t gotten around to it?
 CSW 81. If all jobs had the same pay and hours, what job would you like to have?
-CSW 82. Who’s your go-to band or artist when you can’t decide on something to
-CSW 83. If you were dictator of a small island nation, what crazy dictator stuff
-CSW 84. What is something that most people consider to be a luxury, but you
-CSW 85. What would be your first question after waking up from being
-CSW 86. What is something that a ton of people are obsessed with, but you just
-CSW 87. If you could turn any activity into an Olympic sport, what would you
-CSW 88. What piece of entertainment do you wish you could erase from your mind
-CSW 89. If you had unlimited funds to build a house that you would live in for
+CSW 82. Who’s your go-to band or artist when you can’t decide on something to listen to?
+CSW 83. If you were dictator of a small island nation, what crazy dictator stuff would you do?
+CSW 84. What is something that most people consider to be a luxury, but you don’t think you could live without?
+CSW 85. What would be your first question after waking up from being for 100 years?
+CSW 86. What is something that a ton of people are obsessed with, but you just don’t get the point of?
+CSW 87. If you could turn any activity into an Olympic sport, what would you have a good chance at winning a medal for?
+CSW 88. What piece of entertainment do you wish you could erase from your mind so that you could experience it for the first time again?
+CSW 89. If you had unlimited funds to build a house that you would live in for the rest of your life, what would the finished house be like?
 CSW 90. What gets you fired up?
 CSW 91. What makes a good life?
 CSW 92. What risks are worth taking?
@@ -386,7 +386,7 @@ CSW 109. What are three interesting facts about you?
 CSW 110. What was the best compliment you’ve received?
 CSW 111. What chance encounter changed your life forever?
 CSW 112. What do you want your epitaph to be?
-CSW 113. What are you really good at, but kind of embarrassed that you are good
+CSW 113. What are you really good at, but kind of embarrassed that you are good at it?
 CSW 114. What is the “Holy Grail” of your life?
 CSW 115. What do you like most about your family?
 CSW 116. What do people think is weird about you?
@@ -405,9 +405,9 @@ CSW 128. What is something you can never seem to finish?
 CSW 129. What mistake do you keep making again and again?
 CSW 130. What’s the best thing you got from your parents?
 CSW 131. What is the strangest thing you have come across?
-CSW 132. If you could make a 20-second phone call to yourself at any point in
+CSW 132. If you could make a 20-second phone call to yourself at any point in your life present or future, when would you call and what would you say?
 CSW 133. What’s the best and worst thing about getting older?
-CSW 134. If you could have a never-ending candle that smelled like anything you
+CSW 134. If you could have a never-ending candle that smelled like anything you wanted, what fragrance would you want it to be?
 CSW 135. What is something you are certain you’ll never experience?
 CSW 136. What challenging thing are you working through these days?
 CSW 137. What’s one responsibility you really wish you didn’t have?
@@ -421,7 +421,7 @@ CSW 144. What were some of the turning points in your life?
 CSW 145. What bends your mind every time you think about it?
 CSW 146. What’s the title of the current chapter of your life?
 CSW 147. Among your friends or family, what are you famous for?
-CSW 148. What is something that your friends wouldn’t believe was true about
+CSW 148. What is something that your friends wouldn’t believe was true about you?
 CSW 149. What’s something horrible that everyone should try at least once?
 CSW 150. If you had a personal flag, what would be on it?
 CSW 151. If your life was a book, what would its title be?
@@ -435,7 +435,7 @@ CSW 158. What song or artist do you like but rarely admit to liking?
 CSW 159. What annoys you most about the in-groups you are a part of?
 CSW 160. What small gesture from a stranger made a big impact on you?
 CSW 161. What do you regret not doing or starting when you were younger?
-CSW 162. What’s the dumbest thing you’ve done that actually turned out pretty
+CSW 162. What’s the dumbest thing you’ve done that actually turned out pretty well?
 CSW 163. If you had to change your name, what would you change it to?
 CSW 164. When people look at you, what do you think they see/think?
 CSW 165. What can you not get right, no matter how many times you try?
@@ -444,25 +444,25 @@ CSW 167. As you get older, what are you becoming more and more afraid of?
 CSW 168. What lifestyle change have you been meaning to make for a while now?
 CSW 169. In what situation or place would you feel the most out of place?
 CSW 170. There are two types of people in this world. What are the two types?
-CSW 171. What personality trait do you value most, and which do you dislike the
-CSW 172. When was the last time you changed your opinion/belief about something
+CSW 171. What personality trait do you value most, and which do you dislike the most?
+CSW 172. When was the last time you about something major?
 CSW 173. What would you do if you knew you were going to die in one day?
 CSW 174. What are some of the events in your life that made you who you are?
 CSW 175. If life is a game like some people say, what are some of the rules?
-CSW 176. They say that everyone has a book in them. What would your book be
-CSW 177. What could you do with two million dollars to impact the most amount of
-CSW 178. What would be some of the most annoying things about having yourself as
+CSW 176. They say that everyone has a book in them. What would your book be about?
+CSW 177. What could you do with two million dollars to impact the most amount of people?
+CSW 178. What would be some of the most annoying things about having yourself as a roommate?
 CSW 179. What do you want to be remembered for?
-CSW 180. If you could make one rule that everyone had to follow, what rule would
-CSW 181. What’s something that happened or something that someone said that
-CSW 182. If you were put into solitary confinement for six months, what would
-CSW 183. If you could have a video of anyone event in your life, what event
-CSW 184. What incredibly strong opinion or belief do you have that is completely
-CSW 185. What are the top three things you want to accomplish before you die?
-CSW 186. If you could convince everyone in the world to do one thing at one
-CSW 187. If you had a clock that would countdown to any one event of your
-CSW 188. What do you wish you could tell yourself 10 years ago? What do you
-CSW 189. If you were forced to relive one 10-minute block of your life again and
+CSW 180. If you could make one rule that everyone had to follow, what rule would you make?
+CSW 181. What’s something that happened or something that someone said that changed how you view the world?
+CSW 182. If you were put into solitary confinement for six months, what would you do to stay sane?
+CSW 183. If you could have a video of anyone event in your life, what event would you choose?
+CSW 184. What incredibly strong opinion or belief do you have that is completely unimportant in the grand scheme of things?
+CSW 185. What are the top three things you want to accomplish before you die? How close are you to accomplishing them?
+CSW 186. If you could convince everyone in the world to do one thing at one point in time, what would that thing be?
+CSW 187. If you had a clock that would countdown to any one event of your choosing, what event would you want it to countdown to?
+CSW 188. What do you wish you could tell yourself 10 years ago? What do you think you’ll want to tell your current self 10 years from now?
+CSW 189. If you were forced to relive one 10-minute block of your life again and again for all eternity, what 10 minutes of your life would you choose?
 CSW 190. Have you ever saved someone’s life?
 CSW 191. What are you addicted to?
 CSW 192. What keeps you up at night?
@@ -476,57 +476,57 @@ CSW 199. How do you get in the way of your own success?
 CSW 200. What are you afraid people see when they look at you?
 CSW 201. What’s the most surprising self-realization you’ve had?
 CSW 202. How do you hope you’ll change as a person in the future?
-CSW 203. What’s one thing you did that you really wish you could go back and
-CSW 204. What do you most often look down on people for? What do you think other
+CSW 203. What’s one thing you did that you really wish you could go back and undo?
+CSW 204. What do you most often look down on people for? What do you think other people look down on you for?
 # https://www.mantelligence.com/good-questions-to-ask-to-get-to-know-someone/
-MT 1. If you could choose to be one character from Harry Potter, who would you
+MT 1. If you could choose to be one character from Harry Potter, who would you be?
 MT 2. If your entire life was a movie, what title would best fit?
-MT 3. Would you rather have a photographic memory or gain an extra 40 IQ
-MT 4. Would you rather never have internet access again or never be able to
+MT 3. Would you rather have a photographic memory or gain an extra 40 IQ points?
+MT 4. Would you rather never have internet access again or never be able to take an airplane again?
 MT 5. Would you rather be an amazing dancer or be great at math?
 MT 6. What’s Your Favorite Holiday and Why?
 MT 7. What’s your fondest childhood memory?
 MT 8. What’s the best concert you’ve ever been to?
 MT 9. What’s your favorite comedy movie?
 MT 10. What are your three favorite albums? Why?
-MT 11. Would you rather explore a new planet, or the deepest parts of the
-MT 12. If it were possible to colonize Mars in our lifetime, would you go? Why
-MT 13. If you could play one instrument you aren’t able to now, what would it
-MT 14. If it were possible, would you own a pet dinosaur? If so, which one and
+MT 11. Would you rather explore a new planet, or the deepest parts of the ocean? Why?
+MT 12. If it were possible to colonize Mars in our lifetime, would you go? Why or why not?
+MT 13. If you could play one instrument you aren’t able to now, what would it be and why?
+MT 14. If it were possible, would you own a pet dinosaur? If so, which one and why?
 MT 15. Which historical figure would you most like to be?
 MT 16. What’s your favorite season?
 MT 17. What’s your favorite sports team?
 MT 18. If you could go back to school, would you choose the same major?
 MT 19. Who was your favorite cartoon character as a child?
 MT 20. What is the fanciest restaurant you’ve eaten at?
-MT 21. If you had to read an entire encyclopedia, which letter would you
+MT 21. If you had to read an entire encyclopedia, which letter would you choose?
 MT 22. What was your favorite subject in school?
 MT 23. Which famous person would you like to best friends with?
 MT 24. Would you rather be a famous rock singer or the next Einstein/Tesla?
 MT 25. Which one of your friends would make the best U.S. president and why?
 MT 26. If you could live in a book, TV show, or movie, what would it be?
-MT 27. If you could bring one musician back from the dead, who would it be and
-MT 28. If you had to choose to live without one of your five senses, which one
+MT 27. If you could bring one musician back from the dead, who would it be and why?
+MT 28. If you had to choose to live without one of your five senses, which one would you give up?
 MT 29. What animal best represents you and why?
 MT 30. What would you do if you were the president of your own country?
-MT 31. If you could take only three items with you to a deserted island, what
-MT 32. If you could have one superpower, what would it be and how would you use
+MT 31. If you could take only three items with you to a deserted island, what would they be?
+MT 32. If you could have one superpower, what would it be and how would you use it?
 MT 33. If you could time travel, would you go to the past or the future?
 MT 34. What’s the craziest thing you’ve ever done?
-MT 35. If you could have dinner with any one person, living or dead, who would
-MT 36. If your house was burning and you could only save one item, what would
+MT 35. If you could have dinner with any one person, living or dead, who would they be and why?
+MT 36. If your house was burning and you could only save one item, what would it be and why?
 MT 37. What is “home” to you?
 MT 38. How do you define love?
-MT 39. If you could have the answer to any question, what would that question
+MT 39. If you could have the answer to any question, what would that question be?
 MT 40. What are you most grateful for?
 MT 41. Why did you choose your profession?
 MT 42. How would your best friends describe you?
 MT 43. If you could change one law, what would it be?
-MT 44. If you could master one skill you don’t have right now, what would it
+MT 44. If you could master one skill you don’t have right now, what would it be?
 MT 45. If you could speak another language, which would it be and why?
 MT 46. Would you rather be a Jack of many trades or a master of one?
 MT 47. If you could change one event from history, what would it be?
-MT 48. If you could bring one fictional character to life, who would it be and
+MT 48. If you could bring one fictional character to life, who would it be and why?
 MT 49. Would you rather live in the city or the woods? Why?
 MT 50. What teacher inspired you the most? How?
 MT 51. If you were head of a major TV station for one day, what would you play?
@@ -536,16 +536,16 @@ MT 54. If you could ask the President one question, what would it be?
 MT 55. What single message would you send to an advanced alien species?
 MT 56. How would you survive a zombie apocalypse?
 MT 57. If you were on death row, what would your final meal be?
-MT 58. If you could abolish one piece of modern technology, what would it be
+MT 58. If you could abolish one piece of modern technology, what would it be and why?
 MT 59. If you could live in any TV home, which would it be?
-MT 60. Would you want the ability to hear the thoughts of people near you, even
+MT 60. Would you want the ability to hear the thoughts of people near you, even if you couldn’t turn the ability off?
 MT 61. What would be the worst “buy one get one free” sale of all time?
 MT 62. What animal would be cutest if scaled down to the size of a cat?
 MT 63. If someone narrated your life, who would you want to be the narrator?
 MT 64. Would you rather be stuck on a broken ski lift or in a broken elevator?
-MT 65. Would you rather never be able to eat warm food or never be able to eat
+MT 65. Would you rather never be able to eat warm food or never be able to eat cold food?
 MT 66. Would you rather be able to breath underwater or fly through the air?
-MT 67. What fad do you wish would come back? Which do you feel should stay gone
+MT 67. What fad do you wish would come back? Which do you feel should stay gone forever?
 MT 68. If you were a vegetable, which vegetable would you be?
 MT 69. Which 1900’s era would you travel back to? Why?
 MT 70. Which are you more likely to fight for, love or money? Why?
@@ -565,7 +565,7 @@ MT 83. What is the best/most memorable class you have ever taken?
 MT 84. What is your favorite way to spend a night alone?
 MT 85. What do you define as a family?
 MT 86. What are your biggest long-term goals?
-MT 87. Would you rather work more hours per day, but fewer days, or work fewer
+MT 87. Would you rather work more hours per day, but fewer days, or work fewer hours per day, but more days?
 MT 88. Who is your personal hero?
 MT 89. What do you define as “manliness”?
 MT 90. In what ways are you a leader? In what ways are you a follower?
@@ -575,12 +575,12 @@ MT 93. If you could fight anyone in history, who would it be?
 MT 94. Where would you most like to retire?
 MT 95. If you could be great at one sport which would you choose?
 MT 96. What is your ultimate goal in life?
-MT 97. Would you rather become a millionaire by winning the lottery or from
+MT 97. Would you rather become a millionaire by winning the lottery or from your own work?
 MT 98. What’s your favorite part about this city?
 MT 99. Wine, whiskey, or beer?
 MT 100. What was your dream job growing up?
 MT 101. How would you spend a billion dollars?
-MT 102. If you could dedicate your life to solving one problem, what problem
+MT 102. If you could dedicate your life to solving one problem, what problem would you choose?
 MT 103. What would you like to be the best in the world at doing?
 MT 104. What are your favorite hobbies?
 MT 105. Where do you see yourself in five years?
@@ -593,32 +593,32 @@ MT 111. Do you ever wish I could read your mind? When?
 MT 112. What are the things that remind you of me?
 MT 113. How can I make you feel more special?
 MT 114. What’s one similarity between us that you absolutely love?
-MT 115. If we had only one weekend together before the end of the world, and we
-MT 116. Would you rather have a small wedding or a large and planned out
+MT 115. If we had only one weekend together before the end of the world, and we were to spend it together, what do you think we’d do?
+MT 116. Would you rather have a small wedding or a large and planned out wedding?
 MT 117. What are the 3 things that make you go weak in your knees?
-MT 118. When we hang out with friends, do I make you feel like you’re still my
+MT 118. When we hang out with friends, do I make you feel like you’re still my priority?
 MT 119. Where is the most relaxing place you’ve ever been?
-MT 120. What is a tradition you did as a child that you want to do with your
+MT 120. What is a tradition you did as a child that you want to do with your kids someday?
 MT 121. What class would you love to take together?
 MT 122. What makes you feel young?
 MT 123. What are some small things that make your day better?
-MT 124. If you received a salary to follow whatever passion you wanted to, what
+MT 124. If you received a salary to follow whatever passion you wanted to, what would you do?
 MT 125. What are you most sentimental about?
-MT 126. Do you feel uncomfortable if someone who you don’t know is physically
+MT 126. Do you feel uncomfortable if someone who you don’t know is physically close to you?
 MT 127. What do you do when you’re angry? How can I help?
 MT 128. What were you thinking on our first date?
 MT 129. What more do you want in your career right now?
 MT 130. What’s the coolest thing you’re working on right now?
 MT 131. What’s the most helpful way for you to get feedback?
-MT 132. If you were to start a company from scratch, what values would you
+MT 132. If you were to start a company from scratch, what values would you build it on?
 MT 133. What characteristic do you most admire in others?
 MT 134. What would you be doing if you weren’t at your current job?
 MT 135. What are the best perks that you have ever had at a job?
 MT 136. Eliminate one thing from your daily schedule, what would it be and why?
 MT 137. You can trade places with someone for 1 day. Who would it be?
 MT 138. What is one word that you would use to describe your team?
-MT 139. What is the most important personal attribute that you bring to your
-MT 140. If you had to work on only one project for the next year, what would it
+MT 139. What is the most important personal attribute that you bring to your job?
+MT 140. If you had to work on only one project for the next year, what would it be?
 MT 141. Describe one experience you’ve had where you took a huge leap of faith.
 MT 142. What do you do to get rid of stress?
 MT 143. Are you very active or do you prefer to just relax in your free time?
@@ -628,28 +628,28 @@ MT 146. What is the best way to stay motivated and complete goals?
 MT 147. What is the craziest, most outrageous thing you want to achieve?
 MT 148. What do you hope to achieve in your professional life?
 MT 149. What are your retirement plans?
-MT 150. What or who has taught you most of the information you use on a regular
-MT 151. What is the most challenging work you have ever done and how did you
-MT 152. If we were to ask your team members one word to describe you, what do
+MT 150. What or who has taught you most of the information you use on a regular basis?
+MT 151. What is the most challenging work you have ever done and how did you rise up to the challenge?
+MT 152. If we were to ask your team members one word to describe you, what do you think they’ll most likely say?
 MT 153. What did you have to give up to achieve your current level of success?
 MT 154. Describe a time when you weren’t pleased with your work and why?
-MT 155. If I was talking to your best friend, what is one thing they would say
-MT 156. You’re a new addition to the crayon box. What color would you be and
+MT 155. If I was talking to your best friend, what is one thing they would say you need to work on?
+MT 156. You’re a new addition to the crayon box. What color would you be and why?
 MT 157. What is your least favorite thing about humanity?
-MT 158. Tell me about a time you initiated an uncomfortable conversation with a
+MT 158. Tell me about a time you initiated an uncomfortable conversation with a co-worker. What did you say? How did it turn out?
 MT 159. What language would you like to learn one day? Why?
-MT 160. If you were given 10 Million to help solve a world problem, what
+MT 160. If you were given 10 Million to help solve a world problem, what problem would you choose and how would you contribute to the solution?
 MT 161. Did you reach your full potential in your previous job?
 MT 162. Who is the smartest person you know personally? Why?
-MT 163. If you found out your company was doing something against the law, like
-MT 164. In five minutes, could you explain something to me that is complicated
+MT 163. If you found out your company was doing something against the law, like fraud, what would you do?
+MT 164. In five minutes, could you explain something to me that is complicated but you know well?
 MT 165. Why have you had x amount of jobs in y years?
 MT 166. What’s your favorite smell in the whole world?
 MT 167. What is the sound you love the most?
 MT 168. Nachos. What would you put on yours?
-MT 169. It’s the night before Christmas and you hear footsteps on the roof —
-MT 170. If you had your human body, but the head of an animal, what animal
-MT 171. If you could spend five minutes with the president what would you talk
+MT 169. It’s the night before Christmas and you hear footsteps on the roof — what do you do?
+MT 170. If you had your human body, but the head of an animal, what animal would you pick?
+# MT 171. If you could spend five minutes with the president what would you talk about?
 MT 172. If you could hire out one household chore what would it be?
 MT 173. What would be in your dream sandwich?
 MT 174. What do you think about astrology?
@@ -662,11 +662,11 @@ MT 180. What’s your favorite time of day?
 MT 181. What is your favorite day of the week?
 MT 182. Do you prefer salty snacks or dessert?
 MT 183. Bendy straws or straight ones?
-MT 184. If you could get away with a crime, would you? If yes, what would it
+MT 184. If you could get away with a crime, would you? If yes, what would it be?
 MT 185. If you could change one thing about yourself, what would it be?
 MT 186. If you could choose your last words, what would they be?
 MT 187. If you could bring back anyone from the dead, who would it be and why?
-MT 188. Is there anything that you absolutely refuse to do under any
+MT 188. Is there anything that you absolutely refuse to do under any circumstances?
 MT 189. If you could live forever, how would you spend eternity?
 MT 190. In what ways do you hold yourself back?
 MT 191. How do you want to be remembered?
@@ -680,7 +680,7 @@ MT 198. If you had a week to live, how would you live it?
 MT 199. When you’re 80 years old, what will matter most to you in the world?
 MT 200. Do you believe people are inherently good?
 MT 201. Which is more important, truth or happiness?
-MT 202. What is something about life that people don’t appreciate as much as
+MT 202. What is something about life that people don’t appreciate as much as they should?
 MT 203. What is the biggest thing missing in your life?
 MT 204. What’s the oldest thing you own?
 MT 205. What’s a New Year’s resolution you most want to stick to?
@@ -702,3 +702,4 @@ UC 6. What is your favorite board game and who would you like to play with?
 UC 7. What is your favorite Discord channel?
 UC 8. Which character in The Princess Bride is most like you?
 UC 9. What is your favorite bread?
+
