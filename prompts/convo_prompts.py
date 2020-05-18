@@ -11,22 +11,11 @@ PROMPTS = {
 }
 
 
-class GenPrompt:
-
-  def __init__(self, prompts):
-    if not prompts:
-      raise RuntimeError('Cannot use an empty prompt list.')
-    self.prompts = prompts
-    self.iter = iter([])
-
-  def __next__(self):
-    try:
-      return next(self.iter)
-    except StopIteration:
-      p = list(self.prompts)
-      random.shuffle(p)
-      self.iter = iter(p)
-      return next(self.iter)
+def PromptGen(lines):
+  while True:
+    random.shuffle(lines)
+    for l in lines:
+      yield l
 
 
 class Prompts(commands.Cog):
@@ -48,7 +37,7 @@ class Prompts(commands.Cog):
         # Use item position over file line number to avoid gaps.
         # This does mean it can be offset from file line number.
         lines = ['%d. %s' % (i+1, j) for i, j in enumerate(lines)]
-        self.prompts[channel] = GenPrompt(lines)
+        self.prompts[channel] = PromptGen(lines)
 
   @commands.command()
   async def prompt(self, ctx, *args):
