@@ -11,6 +11,24 @@ PROMPTS = {
 }
 
 
+class GenPrompt:
+
+  def __init__(self, prompts):
+    if not prompts:
+      raise RuntimeError('Cannot use an empty prompt list.')
+    self.prompts = prompts
+    self.iter = iter([])
+
+  def __next__(self):
+    try:
+      return next(self.iter)
+    except StopIteration:
+      p = list(self.prompts)
+      random.shuffle(p)
+      self.iter = iter(p)
+      return next(self.iter)
+
+
 class Prompts(commands.Cog):
   """Serve up conversation prompts."""
 
@@ -21,6 +39,7 @@ class Prompts(commands.Cog):
     if prompts is None:
       prompts = PROMPTS
     self.prompts = {}
+    self.generator = {}
     for channel, filename in prompts.items():
       with open(filename) as f:
         lines = f.read().split('\n')
@@ -29,7 +48,7 @@ class Prompts(commands.Cog):
         # Use item position over file line number to avoid gaps.
         # This does mean it can be offset from file line number.
         lines = ['%d. %s' % (i+1, j) for i, j in enumerate(lines)]
-        self.prompts[channel] = lines
+        self.prompts[channel] = GenPrompt(lines)
 
   @commands.command()
   async def prompt(self, ctx, *args):
@@ -37,15 +56,7 @@ class Prompts(commands.Cog):
     if ctx.channel.name not in self.prompts:
       await ctx.send('No prompts for channel %s' % ctx.channel.name)
       return
-    prompts = self.prompts[ctx.channel.name]
-    if len(words) > 1 and words[1].isnumeric():
-      num = int(words[1]) - 1
-      if 0 <= num < len(prompts):
-        await ctx.send(prompts[num])
-      else:
-        await ctx.send('Number must be between 1 and %d' % len(prompts))
-    else:
-      await ctx.send(random.choice(self.prompts[ctx.channel.name]))
+    await ctx.send(next(self.prompts[ctx.channel.name]))
 
 
 def main():
