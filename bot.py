@@ -17,9 +17,12 @@ Pruner = inactive.Pruner
 TalkQueue = discussion_queue.TalkQueue
 QuoteQuiz = quote_quiz.QuoteQuiz
 
-
-dotenv.load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+PROMPTS = {
+  'creative-writing': 'prompts/prompts_writing.txt',
+  'conversation-prompts': 'prompts/prompts_discuss.txt',
+}
+QUOTES = 'quote_quiz/quotes.txt'
 
 
 def main():
@@ -27,17 +30,19 @@ def main():
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
   else:
     logging.basicConfig(stream=sys.stderr, level=logging.WARNING)
+
+  token = os.getenv('DISCORD_TOKEN')
+  if not token:
+    raise RuntimeError('Missing DISCORD_TOKEN')
+
   dotenv.load_dotenv()
-  prompts = {
-    'creative-writing': 'convo_prompts/prompts_writing.txt',
-    'conversation-prompts': 'convo_prompts/prompts_discuss.txt',
-  }
+
   bot = commands.Bot(command_prefix='!')
-  bot.add_cog(prompts.Prompts(prompts))
+  bot.add_cog(prompts.Prompts(PROMPTS))
   bot.add_cog(inactive.Pruner())
   bot.add_cog(discussion_queue.TalkQueue())
-  bot.add_cog(quote_quiz.QuoteQuiz('quotes/quotes.txt'))
-  bot.run(os.getenv('DISCORD_TOKEN'))
+  bot.add_cog(quote_quiz.QuoteQuiz(QUOTES))
+  bot.run(token)
 
 
 if __name__ == '__main__':
