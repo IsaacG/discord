@@ -4,6 +4,7 @@ import collections
 import more_itertools
 import os
 import random
+import re
 import string
 from dataclasses import dataclass
 from discord.ext import commands
@@ -28,6 +29,27 @@ class Quote:
     return '%s\n%s\n' % (self.quote, self.movie)
 
 
+@dataclass
+class ActiveQuote:
+  quote: Quote
+  guesses: int = 0
+  hint_count: int = 0
+  def GuessMatches(self, title) -> bool:
+    self.guesses += 1
+    return SuperStrip(title) == SuperStrip(self.quote.movie)
+  def __post_init__(self):
+    self.hints = [
+      '%d words' % len(self.quote.movie.split()),
+      'starts with %s' % self.quote.movie[0],
+      '`%s`' % re.sub('[%s]' % (string.ascii_letters + string.digits), '_ ', re.sub(' ', '   ', self.quote.movie)),
+    ]
+  def Answer(self) -> str:
+    return '%s --%s' % (self.quote.quote, self.quote.movie)
+  def Hint(self) -> str:
+    self.hint_count += 1
+    return 'Hint: %s' % ', '.join(self.hints[0:self.hint_count])
+
+
 class Quotes:
 
   def __init__(self, filename: str):
@@ -41,11 +63,11 @@ class Quotes:
       for i, lines in enumerate(more_itertools.chunked(f.readlines(), 2)):
         self.cache.append(Quote(quote=lines[0], movie=lines[1]))
         
-  def GetQuote(self):
+  def GetQuote(self) -> ActiveQuote:
     if not self.quotes:
       self.quotes = list(self.cache)
       random.shuffle(self.quotes)
-    return self.quotes.pop()
+    return ActiveQuote(quote=self.quotes.pop())
 
   def AddQuote(self, quote, movie):
     self.cache.append(Quote(quote=quote, movie=movie))
@@ -72,36 +94,11 @@ class QuoteQuiz(commands.Cog):
     super()
     self.quotes = Quotes(filename)
     self.current = None
-    self.guesses = 0
     self.adding = collections.defaultdict(dict)
-
-  @commands.command()
-  async def quote(self, ctx):
-    if self.current is not None and self.guesses < self.MIN_GUESSES:
-      await ctx.send('Try a few more guesses first!')
-      return
-
-    if self.current is not None:
-      await ctx.send('%s --%s' % (self.current.quote, self.current.movie))
-      
-    await self.NextQuote(ctx)
 
   async def NextQuote(self, ctx):
     self.current = self.quotes.GetQuote()
-    self.guesses = 0
-    await ctx.send(self.PROMPT % self.current.quote)
-
-  @commands.command()
-  async def guess(self, ctx):
-    if self.current is None:
-      return
-    self.guesses += 1
-    title = self.CommandContent(ctx)
-    if SuperStrip(title) == SuperStrip(self.current.movie):
-      await ctx.send('%s got it! The movie is: %s' % (ctx.author.display_name, self.current.movie))
-      await self.NextQuote(ctx)
-    else:
-      await ctx.send('%s, that is not it.' % ctx.author.display_name)
+    await ctx.send(self.PROMPT % self.current.quote.quote)
 
   def CommandContent(self, ctx):
     return ctx.message.content[len(ctx.invoked_with) + 2:]
@@ -116,6 +113,33 @@ class QuoteQuiz(commands.Cog):
       await ctx.send('Now tell me what movie that was from, %s, with !addmovie The Movie Title' % ctx.author.display_name)
     elif 'quote' not in entry and 'movie' in entry:
       await ctx.send('Now tell me the quote from that movie, %s, with !addquote The Best Quote Ever' % ctx.author.display_name)
+
+  @commands.command()
+  async def quote(self, ctx):
+    if self.current is not None and self.current.guesses < self.MIN_GUESSES:
+      await ctx.send('Try a few more guesses first!')
+      return
+
+    if self.current is not None:
+      await ctx.send(self.current.Answer())
+      
+    await self.NextQuote(ctx)
+
+  @commands.command()
+  async def guess(self, ctx):
+    if self.current is None:
+      return
+    if self.current.GuessMatches(self.CommandContent(ctx)):
+      await ctx.send('%s got it! The movie is: %s' % (ctx.author.display_name, self.current.quote.movie))
+      await self.NextQuote(ctx)
+    else:
+      await ctx.send('%s, that is not it.' % ctx.author.display_name)
+
+  @commands.command()
+  async def hint(self, ctx):
+    if self.current is None:
+      return
+    await ctx.send(self.current.Hint())
 
   @commands.command()
   async def delquote(self, ctx):
