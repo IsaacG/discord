@@ -66,6 +66,7 @@ class QuoteQuiz(commands.Cog):
 
   qualified_name = 'Quote Quiz'
   PROMPT = 'What movie is this quote from? %s'
+  MIN_GUESSES = 2
 
   def __init__(self, filename=QUOTES):
     super()
@@ -76,7 +77,7 @@ class QuoteQuiz(commands.Cog):
 
   @commands.command()
   async def quote(self, ctx):
-    if self.current is not None and self.guesses < 3:
+    if self.current is not None and self.guesses < self.MIN_GUESSES:
       await ctx.send('Try a few more guesses first!')
       return
 
