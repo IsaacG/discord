@@ -56,7 +56,7 @@ class ActiveQuote:
     while letters:
       l = letters.pop()
       clue = re.sub(l, '_', clue)
-      h.append('`%s`' % clue)
+      h.append('`%s`' % ' '.join(a for a in clue))
     h.pop()
     h.reverse()
     self.hints.extend(h)
