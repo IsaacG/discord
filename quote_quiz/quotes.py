@@ -107,7 +107,7 @@ class QuoteQuiz(commands.Cog):
 
   qualified_name = 'Quote Quiz'
   PROMPT = 'What movie is this quote from? To guess, use the command !guess Some Movie. Quote: %s'
-  MIN_GUESSES = 2
+  ATTEMPTS = 4
 
   def __init__(self, filename=QUOTES):
     super()
@@ -133,16 +133,20 @@ class QuoteQuiz(commands.Cog):
     elif 'quote' not in entry and 'movie' in entry:
       await ctx.send('Now tell me the quote from that movie, %s, with !addquote The Best Quote Ever' % ctx.author.display_name)
 
+  def CanMoveOn(self) -> bool:
+    interactions = self.current.guesses + self.current.hint_count
+    return interactions >= self.ATTEMPTS
+
   @commands.command()
   async def quote(self, ctx):
-    if self.current is not None and self.current.guesses < self.MIN_GUESSES:
-      await ctx.send('Try a few more guesses first! Maybe try !hint. Which movie has: %s' % self.current.quote.quote)
-      return
-
-    if self.current is not None:
-      await ctx.send(self.current.Answer())
-      
-    await self.NextQuote(ctx)
+    if self.current is None:
+      await self.NextQuote(ctx)
+    else:
+      if self.CanMoveOn():
+        await ctx.send(self.current.Answer())
+        await self.NextQuote(ctx)
+      else:
+        await ctx.send('Try a few more guesses first! Maybe try !hint. Which movie has: %s' % self.current.quote.quote)
 
   @commands.command()
   async def guess(self, ctx):
