@@ -106,7 +106,7 @@ class QuoteQuiz(commands.Cog):
   """Try to guess where a quote is from."""
 
   qualified_name = 'Quote Quiz'
-  PROMPT = 'What movie is this quote from? %s'
+  PROMPT = 'What movie is this quote from? To guess, use the command !guess Some Movie. Quote: %s'
   MIN_GUESSES = 2
 
   def __init__(self, filename=QUOTES):
@@ -136,7 +136,7 @@ class QuoteQuiz(commands.Cog):
   @commands.command()
   async def quote(self, ctx):
     if self.current is not None and self.current.guesses < self.MIN_GUESSES:
-      await ctx.send('Try a few more guesses first!')
+      await ctx.send('Try a few more guesses first! Maybe try !hint. Which movie has: %s' % self.current.quote.quote)
       return
 
     if self.current is not None:
@@ -179,10 +179,11 @@ class QuoteQuiz(commands.Cog):
 
 
 def main():
-  q = Quote(quote='', movie='Mommie Dearest')
-  a = ActiveQuote(quote=q)
-  print('\n'.join(a.hints))
-  return
+  if False:
+    q = Quote(quote='', movie='Mommie Dearest')
+    a = ActiveQuote(quote=q)
+    print('\n'.join(a.hints))
+    return
 
   token = os.getenv('DISCORD_TOKEN')
   if token is None:
