@@ -34,20 +34,39 @@ class ActiveQuote:
   quote: Quote
   guesses: int = 0
   hint_count: int = 0
+
   def GuessMatches(self, title) -> bool:
     self.guesses += 1
     return SuperStrip(title) == SuperStrip(self.quote.movie)
+
   def __post_init__(self):
+    title = self.quote.movie
     self.hints = [
-      '%d words' % len(self.quote.movie.split()),
-      'starts with %s' % self.quote.movie[0],
-      '`%s`' % re.sub('[%s]' % (string.ascii_letters + string.digits), '_ ', re.sub(' ', '   ', self.quote.movie)),
+      '%d words' % len(title.split()),
+      'starts with %s' % title[0],
     ]
+
+    letters = list(l.upper() for l in set(SuperStrip(title)))
+    random.shuffle(letters)
+    vowels = [l for l in letters if l in 'AEIOU']
+    consts = [l for l in letters if l not in 'AEIOU']
+    letters = vowels + consts
+    h = []
+    clue = title.upper()
+    while letters:
+      l = letters.pop()
+      clue = re.sub(l, '_', clue)
+      h.append('`%s`' % clue)
+    h.pop()
+    h.reverse()
+    self.hints.extend(h)
+
   def Answer(self) -> str:
     return '%s --%s' % (self.quote.quote, self.quote.movie)
+
   def Hint(self) -> str:
     self.hint_count += 1
-    return 'Hint: %s' % ', '.join(self.hints[0:self.hint_count])
+    return 'Hint: %s' % self.hints[self.hint_count - 1]
 
 
 class Quotes:
@@ -160,6 +179,11 @@ class QuoteQuiz(commands.Cog):
 
 
 def main():
+  q = Quote(quote='', movie='Mommie Dearest')
+  a = ActiveQuote(quote=q)
+  print('\n'.join(a.hints))
+  return
+
   token = os.getenv('DISCORD_TOKEN')
   if token is None:
     raise Exception('Token not found')
