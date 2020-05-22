@@ -149,7 +149,11 @@ class QuoteQuiz(commands.Cog):
     if self.current is None:
       return
     if self.current.GuessMatches(self.CommandContent(ctx)):
-      await ctx.send('%s got it! The movie is: %s' % (ctx.author.display_name, self.current.quote.movie))
+      await ctx.send('%s got it! (%d guesses, %d hints.) The movie is: %s' % (
+          ctx.author.display_name,
+          self.current.guesses,
+          self.current.hint_count,
+          self.current.quote.movie))
       await self.NextQuote(ctx)
     else:
       await ctx.send('%s, that is not it.' % ctx.author.display_name)
