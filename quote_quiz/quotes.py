@@ -106,18 +106,18 @@ class QuoteQuiz(commands.Cog):
   """Try to guess where a quote is from."""
 
   qualified_name = 'Quote Quiz'
-  PROMPT = 'What movie is this quote from? To guess, use the command !guess Some Movie. Quote: %s'
+  PROMPT = 'Try to `!guess` the movie for this quote: %s'
   ATTEMPTS = 4
 
   def __init__(self, filename=QUOTES):
     super()
     self.quotes = Quotes(filename)
-    self.current = None
     self.adding = collections.defaultdict(dict)
+    self.current = collections.defaultdict(lambda: None)
 
   async def NextQuote(self, ctx):
-    self.current = self.quotes.GetQuote()
-    await ctx.send(self.PROMPT % self.current.quote.quote)
+    self.current[ctx.channel] = self.quotes.GetQuote()
+    await ctx.send(self.PROMPT % self.current[ctx.channel].quote.quote)
 
   def CommandContent(self, ctx):
     return ctx.message.content[len(ctx.invoked_with) + 2:]
@@ -133,46 +133,46 @@ class QuoteQuiz(commands.Cog):
     elif 'quote' not in entry and 'movie' in entry:
       await ctx.send('Now tell me the quote from that movie, %s, with !addquote The Best Quote Ever' % ctx.author.display_name)
 
-  def CanMoveOn(self) -> bool:
-    interactions = self.current.guesses + self.current.hint_count
+  def CanMoveOn(self, ctx) -> bool:
+    interactions = self.current[ctx.channel].guesses + self.current[ctx.channel].hint_count
     return interactions >= self.ATTEMPTS
 
   @commands.command()
   async def quote(self, ctx):
-    if self.current is None:
+    if self.current[ctx.channel] is None:
       await self.NextQuote(ctx)
     else:
-      if self.CanMoveOn():
-        await ctx.send(self.current.Answer())
+      if self.CanMoveOn(ctx):
+        await ctx.send(self.current[ctx.channel].Answer())
         await self.NextQuote(ctx)
       else:
-        await ctx.send('Try a few more guesses first! Maybe try !hint. Which movie has: %s' % self.current.quote.quote)
+        await ctx.send('Try a bit more or take a `!hint`. Quote: %s' % self.current[ctx.channel].quote.quote)
 
   @commands.command()
   async def guess(self, ctx):
-    if self.current is None:
+    if self.current[ctx.channel] is None:
       return
-    if self.current.GuessMatches(self.CommandContent(ctx)):
+    if self.current[ctx.channel].GuessMatches(self.CommandContent(ctx)):
       await ctx.send('%s got it! (%d guesses, %d hints.) The movie is: %s' % (
           ctx.author.display_name,
-          self.current.guesses,
-          self.current.hint_count,
-          self.current.quote.movie))
+          self.current[ctx.channel].guesses,
+          self.current[ctx.channel].hint_count,
+          self.current[ctx.channel].quote.movie))
       await self.NextQuote(ctx)
     else:
       await ctx.send('%s, that is not it.' % ctx.author.display_name)
 
   @commands.command()
   async def hint(self, ctx):
-    if self.current is None:
+    if self.current[ctx.channel] is None:
       return
-    await ctx.send(self.current.Hint())
+    await ctx.send(self.current[ctx.channel].Hint())
 
   @commands.command()
   async def delquote(self, ctx):
-    if self.current is None:
+    if self.current[ctx.channel] is None:
       return
-    self.quotes.DelQuote(self.current)
+    self.quotes.DelQuote(self.current[ctx.channel])
     await ctx.send('Deleted the last quote')
 
   @commands.command()
