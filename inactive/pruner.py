@@ -17,27 +17,23 @@ async def is_owner(ctx):
   return ctx.guild and ctx.guild.owner == ctx.author
 
 
-async def role_permission(ctx):
-  channel = ctx.message.channel
-  return ctx.guild and channel.permissions_for(ctx.guild.me).manage_roles
-
-
 class Pruner(commands.Cog):
   """Member management to remove inactive and grant access on activity."""
 
   qualified_name = 'Prune Inactive Accounts'
-  # None for no greeting, otherwise the welcome channel.
-  GREET = 'welcome'
-  MEMBER_ROLE = 'member'
 
   # How many days since last activity before being deemed inactive.
   PRUNE_INACTIVE_TIMEOUT = 21
   PRUNE_KICK_TIMEOUT = 30
 
-  def __init__(self):
+  def __init__(self, bot, config):
     super(Pruner, self).__init__()
-    self.member_role = None
-    self.welcome_channel = None
+    self.bot = bot
+    self.config = config
+
+    self._role = {}
+    self._welcome_channel = {}
+
     self.load_history()
     self.next_save = int(time.time()) + 60 * 60
 
@@ -63,35 +59,53 @@ class Pruner(commands.Cog):
     self.next_save = int(time.time()) + 60 * 60
 
   def get_nonmembers(self, guild):
-    if not self.member_role:
-      self.member_role = [r for r in guild.roles if r.name == self.MEMBER_ROLE][0]
-    return [m for m in guild.members if self.member_role not in m.roles]
+    r = self._role[guild]
+    return [m for m in guild.members if r not in m.roles]
 
-  def get_welcome_channel(self, guild):
-    if self.GREET is None:
-      return None
-    if not self.welcome_channel:
-      self.welcome_channel = [
-          t for t in guild.text_channels if t.name == self.GREET][0]
-    return self.welcome_channel
+  def ignore_guild(self, g_obj):
+    return g_obj.guild not in self._welcome_channel
+
+  def member_role(self, g_obj):
+    return self._role[g_obj.guild]
+
+  async def welcome(self, g_obj, msg):
+    """Send a message to the guild welcome channel, if configured."""
+    guild = g_obj.guild
+    if ignore_guild(g_obj):
+      return
+    await self._welcome_channel[guild].send(msg)
 
   @commands.Cog.listener()
-  @commands.check(role_permission)
+  async def on_ready(self):
+    """On ready, find the welcome channels and member roles for all the connected guilds."""
+    self._welcome_channel = {}
+    for g in self.bot.guilds:
+      if g.name not in self.config: continue
+
+      c_name, r_name = self.config[g.name]
+
+      cs = [c for c in g.text_channels if c.name == c_name]
+      if not cs: continue
+      c = cs[0]
+      if not c.permissions_for(g.me).manage_roles: continue
+
+      roles = [r for r in g.roles if r.name == r_name]
+      if not roles: continue
+      r = roles[0]
+
+      self._welcome_channel[g] = c
+      self._role[g] = r
+
+  @commands.Cog.listener()
   async def on_member_join(self, member):
-    wc = self.get_welcome_channel(member.guild)
-    if wc is None:
-      return
-    await wc.send(
+    if self.ignore_guild(member): return
+    await welcome(
         'Welcome, %s. Please introduce yourself to gain access to the rest of the server.' % member.mention)
 
   @commands.Cog.listener()
-  @commands.check(role_permission)
   async def on_message(self, message):
-    if not self.member_role:
-      roles = [r for r in message.guild.roles if r.name == self.MEMBER_ROLE]
-      if not roles:
-        return
-      self.member_role = roles[0]
+    if self.ignore_guild(message): return
+    role = self.member_role(message)
 
     if (not message.guild  # Direct message.
         or message.is_system()
@@ -103,8 +117,8 @@ class Pruner(commands.Cog):
     first = m_id not in self.history
     self.history[m_id] = now
 
-    if self.member_role not in message.author.roles:
-      await message.author.add_roles(self.member_role)
+    if role not in message.author.roles:
+      await message.author.add_roles(role)
 
     if first or now > self.next_save:
       self.save_history()
@@ -112,6 +126,7 @@ class Pruner(commands.Cog):
   @commands.command()
   @commands.check(is_owner)
   async def list_nonmembers(self, ctx, *args):
+    if self.ignore_guild(ctx): return
     nonmembers = self.get_nonmembers(ctx.guild)
     await ctx.send('%d non-members: %s' % (
         len(nonmembers), ', '.join(m.display_name for m in nonmembers)))
@@ -119,6 +134,7 @@ class Pruner(commands.Cog):
   @commands.command()
   @commands.check(is_owner)
   async def ping_nonmembers(self, ctx, *args):
+    if self.ignore_guild(ctx): return
     msg = ctx.message.content[len(ctx.prefix + ctx.invoked_with):].strip()
     if len(msg) >= 2000:
       await ctx.send('Message len is too big. %d > 2000. Fail.' % len(msg))
@@ -127,29 +143,32 @@ class Pruner(commands.Cog):
     nonmembers = self.get_nonmembers(ctx.guild)
     out = '%s: %s' % (', '.join(m.mention for m in nonmembers), msg)
     if len(out) < 2000:
-      await self.get_welcome_channel(ctx.guild).send(out)
+      await self.welcome(out)
       return
 
     await ctx.send('Message len is too big. %d > 2000. Chunking.' % len(out))
     people = ', '.join(m.mention for m in nonmembers)
     if len(people) < 2000:
-      await self.get_welcome_channel(ctx.guild).send(people)
-      await self.get_welcome_channel(ctx.guild).send(msg)
+      await self.welcome(people)
+      await self.welcome(msg)
       return
 
     people = [', '.join(m.mention for m in subset) for subset in more_itertools.chunked(nonmembers, 50)]
     if any(len(p) > 2000 for p in people):
       await ctx.send('People list too big even in chunks. Fail.')
     for p in people:
-      await self.get_welcome_channel(ctx.guild).send(p)
-    await self.get_welcome_channel(ctx.guild).send(msg)
+      await self.welcome(p)
+    await self.welcome(msg)
+
+  @commands.command()
+  async def test(self, ctx):
+    await ctx.send(ctx.guild.name)
 
   @commands.command()
   @commands.check(is_owner)
   async def prune(self, ctx, *args):
-    if not self.member_role:
-      self.member_role = [r for r in ctx.guild.roles if r.name == self.MEMBER_ROLE][0]
-
+    if self.ignore_guild(ctx): return
+    role = self.member_role(ctx)
     inactive_timeout = self.PRUNE_INACTIVE_TIMEOUT * 60 * 60 * 24
     now = int(time.time())
     dt_now = datetime.datetime.now()
@@ -161,8 +180,8 @@ class Pruner(commands.Cog):
     active      = [m for m in ctx.guild.members if active(m)]
     inactive    = list(set(ctx.guild.members) - set(never_spoke) - set(active))
 
-    inactive_w_role = [m for m in inactive if self.member_role in m.roles]
-    never_spoke_wr = [m for m in never_spoke if self.member_role in m.roles]
+    inactive_w_role = [m for m in inactive if role in m.roles]
+    never_spoke_wr = [m for m in never_spoke if role in m.roles]
     drops = inactive_w_role + never_spoke_wr
 
     # People that joined a while ago and never spoke. Stale accounts. Kick?
@@ -177,7 +196,7 @@ class Pruner(commands.Cog):
 
     if 'role_remove' in ctx.message.content.split():
       for member in drops:
-        await member.remove_roles(self.member_role)
+        await member.remove_roles(role)
     if 'kick_stale' in ctx.message.content.split():
       for member in stale:
         await member.kick()
@@ -186,6 +205,8 @@ class Pruner(commands.Cog):
   @commands.command()
   @commands.check(is_owner)
   async def build_hist(self, ctx, *args):
+    if self.ignore_guild(ctx): return
+    role = self.member_role(message)
     last_spoke = collections.defaultdict(lambda: datetime.datetime(1990, 1, 1))
     for channel in ctx.guild.text_channels:
       if not channel.permissions_for(ctx.guild.me).read_message_history:
@@ -206,14 +227,15 @@ class Pruner(commands.Cog):
     # Grant the "member" role to any active users.
     if False:
       for member in active:
-        if self.member_role not in member.roles:
-          await member.add_roles(self.member_role)
-      print('Done adding members')
+        if role not in member.roles:
+          await member.add_roles(role)
 
 
 def main():
+  # guild => (welcome channel, member role)
+  CONFIG = {'Server Name': ('welcome', 'member')}
   bot = commands.Bot(command_prefix='!')
-  bot.add_cog(Pruner())
+  bot.add_cog(Pruner(bot, CONFIG))
   bot.run(os.getenv('DISCORD_TOKEN'))
 
 
