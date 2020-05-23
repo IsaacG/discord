@@ -44,16 +44,12 @@ Citizen Kane
 White Heat
 "I'm as mad as hell, and I'm not going to take this anymore!"
 Network
-"Louis, I think this is the beginning of a beautiful friendship."
-Casablanca
 "I ate his liver with some fava beans and a nice Chianti."
 The Silence of the Lambs
 "Bond. James Bond."
 Dr. No
 "There's no place like home."
 The Wizard of Oz
-"I am big! It's the pictures that got small."
-Sunset Blvd
 "Show me the money!"
 Jerry Maguire
 "Why don't you come up sometime and see me?"
@@ -160,8 +156,6 @@ Surely you can't be serious. I am serious - and don't call me Shirley.
 Airplane
 "Yo, Adrian!"
 Rocky
-"Hello, gorgeous."
-Funny Girl
 "Toga! Toga!"
 National Lampoon's Animal House
 "Listen to them. Children of the night. What music they make."
@@ -292,3 +286,23 @@ It's not who you are underneath, it's what you do that defines you.
 Batman Begins
 Every time a bell rings, an angel gets his wings.
 It's a Wonderful Life
+Cause if we can't protect the Earth, you can be damn sure we'll avenge it.
+The Avengers
+You can't marry a man you just met.
+Frozen
+Ohana means family. Family means nobody gets left behind, or forgotten.
+Lilo and Stitch
+Look at that, Abu! It’s not every day you see a horse with two rear ends
+Aladdin
+You are a sad, strange little man, and you have my pity.
+Toy Story
+What do you want me to do, dress in drag and do the hula?
+The Lion King
+It's called a hustle, sweetheart.
+Zootopia
+What? You went over my helmet?
+Spaceballs
+With great power comes great responsibility.
+Spiderman
+The claw is our master. The claw chooses who will go and who will stay.
+Toy Story
