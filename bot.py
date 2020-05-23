@@ -1,5 +1,6 @@
 #!/bin/python
 
+import conf
 import dotenv
 import logging
 import os
@@ -12,17 +13,14 @@ import quote_quiz
 from discord.ext import commands
 
 
-Prompts = prompts.Prompts
-Pruner = inactive.Pruner
-TalkQueue = discussion_queue.TalkQueue
-QuoteQuiz = quote_quiz.QuoteQuiz
-
 PROMPTS = {
   'creative-writing': 'prompts/prompts_writing.txt',
   'testing': 'prompts/prompts_discuss.txt',
   'conversation-prompts': 'prompts/prompts_discuss.txt',
 }
 QUOTES = 'quote_quiz/quotes.txt'
+PRUNE_CONF = {'Some Server Name': ('welcome', 'member')}
+PRUNE_CONF = conf.PRUNE_CONF  # Private config
 
 
 def main():
@@ -38,7 +36,7 @@ def main():
 
   bot = commands.Bot(command_prefix='!')
   bot.add_cog(prompts.Prompts(PROMPTS))
-  bot.add_cog(inactive.Pruner())
+  bot.add_cog(inactive.Pruner(bot, PRUNE_CONF))
   bot.add_cog(discussion_queue.TalkQueue())
   bot.add_cog(quote_quiz.QuoteQuiz(QUOTES))
   bot.run(token)
