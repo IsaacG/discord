@@ -5,12 +5,16 @@ import datetime
 import discord
 import enum
 import json
+import logging
 import more_itertools
 import os
 import sys
 import time
 
 from discord.ext import commands
+
+DEBUG = False
+if DEBUG: import conf
 
 
 async def is_owner(ctx):
@@ -71,7 +75,7 @@ class Pruner(commands.Cog):
   async def welcome(self, g_obj, msg):
     """Send a message to the guild welcome channel, if configured."""
     guild = g_obj.guild
-    if ignore_guild(g_obj):
+    if self.ignore_guild(g_obj):
       return
     await self._welcome_channel[guild].send(msg)
 
@@ -98,9 +102,11 @@ class Pruner(commands.Cog):
 
   @commands.Cog.listener()
   async def on_member_join(self, member):
+    print('on_member_join: %s' % member.mention)
     if self.ignore_guild(member): return
-    await welcome(
-        'Welcome, %s. Please introduce yourself to gain access to the rest of the server.' % member.mention)
+    print('welcome member')
+    msg = 'Welcome, %s. Please introduce yourself to gain access to the rest of the server.' % member.mention
+    await self.welcome(member, msg)
 
   @commands.Cog.listener()
   async def on_message(self, message):
@@ -143,26 +149,22 @@ class Pruner(commands.Cog):
     nonmembers = self.get_nonmembers(ctx.guild)
     out = '%s: %s' % (', '.join(m.mention for m in nonmembers), msg)
     if len(out) < 2000:
-      await self.welcome(out)
+      await self.welcome(ctx, out)
       return
 
     await ctx.send('Message len is too big. %d > 2000. Chunking.' % len(out))
     people = ', '.join(m.mention for m in nonmembers)
     if len(people) < 2000:
-      await self.welcome(people)
-      await self.welcome(msg)
+      await self.welcome(ctx, people)
+      await self.welcome(ctx, msg)
       return
 
     people = [', '.join(m.mention for m in subset) for subset in more_itertools.chunked(nonmembers, 50)]
     if any(len(p) > 2000 for p in people):
       await ctx.send('People list too big even in chunks. Fail.')
     for p in people:
-      await self.welcome(p)
-    await self.welcome(msg)
-
-  @commands.command()
-  async def test(self, ctx):
-    await ctx.send(ctx.guild.name)
+      await self.welcome(ctx, p)
+    await self.welcome(ctx, msg)
 
   @commands.command()
   @commands.check(is_owner)
@@ -234,6 +236,11 @@ class Pruner(commands.Cog):
 def main():
   # guild => (welcome channel, member role)
   CONFIG = {'Server Name': ('welcome', 'member')}
+
+  if DEBUG:
+    logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+    CONFIG = conf.PRUNE_CONF
+
   bot = commands.Bot(command_prefix='!')
   bot.add_cog(Pruner(bot, CONFIG))
   bot.run(os.getenv('DISCORD_TOKEN'))
