@@ -16,8 +16,6 @@ Gone With the Wind
 The Wizard of Oz
 "Here's looking at you, kid."
 Casablanca
-"Go ahead, make my day."
-Sudden Impact
 "All right, Mr. DeMille, I'm ready for my close-up."
 Sunset Boulevard
 "May the Force be with you."
@@ -42,8 +40,6 @@ In the Heat of the Night
 Citizen Kane
 "Made it, Ma! Top of the world!"
 White Heat
-"I'm as mad as hell, and I'm not going to take this anymore!"
-Network
 "I ate his liver with some fava beans and a nice Chianti."
 The Silence of the Lambs
 "Bond. James Bond."
@@ -130,8 +126,6 @@ Dr. Strangelove
 Sherlock Holmes
 "Get your stinking paws off me, you damned dirty ape."
 Planet of the Apes
-"Of all the gin joints in all the towns in all the world, she walks into mine."
-Casablanca
 "Here's Johnny!"
 The Shining
 "They're here!"
@@ -306,3 +300,13 @@ With great power comes great responsibility.
 Spiderman
 The claw is our master. The claw chooses who will go and who will stay.
 Toy Story
+To infinity and beyond!
+Toy Story
+Your scientists were so preoccupied with whether they could, they didn't stop to think if they should.
+Jurassic Park
+Clever girl!
+Jurassic Park
+My name is Inigo Montoya, you killed my father, prepare to die!
+The Princess Bride
+No wonder you're extinct. I'm going to run you over when I come back down.
+Jurassic Park
