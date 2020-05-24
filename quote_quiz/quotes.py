@@ -6,6 +6,7 @@ import os
 import random
 import re
 import string
+import sys
 from dataclasses import dataclass
 from discord.ext import commands
 
@@ -41,12 +42,12 @@ class ActiveQuote:
 
   def __post_init__(self):
     title = self.quote.movie
+    first = title[0]
     self.hints = [
-      '%d words' % len(title.split()),
-      'starts with %s' % title[0],
+      '%d words, starts with %s' % (len(title.split()), first)
     ]
 
-    letters = list(l.upper() for l in set(SuperStrip(title)))
+    letters = list(l.upper() for l in set(SuperStrip(title[1:])))
     random.shuffle(letters)
     vowels = [l for l in letters if l in 'AEIOU']
     consts = [l for l in letters if l not in 'AEIOU']
@@ -56,6 +57,7 @@ class ActiveQuote:
     while letters:
       l = letters.pop()
       clue = re.sub(l, '_', clue)
+      clue = first + clue[1:]
       h.append('`%s`' % ' '.join(a for a in clue))
     h.pop()
     h.reverse()
@@ -71,7 +73,7 @@ class ActiveQuote:
     return 'Hint: %s' % self.hints[self.hint_count - 1]
 
   def Result(self) -> str:
-    return '(%d guesses, %d hints.) The movie is: %s' % (
+    return '(%d guesses, %d hints) The movie is: %s' % (
         self.guesses, self.hint_count, self.quote.movie)
 
 class Quotes:
@@ -199,7 +201,7 @@ class QuoteQuiz(commands.Cog):
 
 
 def main():
-  if False:
+  if 'hints' in sys.argv:
     q = Quote(quote='', movie='Mommie Dearest')
     a = ActiveQuote(quote=q)
     print('\n'.join(a.hints))
