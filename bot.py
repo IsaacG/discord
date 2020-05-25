@@ -7,9 +7,11 @@ import os
 import sys
 
 import discussion_queue
+import eight_ball
 import inactive
 import prompts
 import quote_quiz
+
 from discord.ext import commands
 
 
@@ -39,6 +41,7 @@ def main():
   bot.add_cog(inactive.Pruner(bot, PRUNE_CONF))
   bot.add_cog(discussion_queue.TalkQueue())
   bot.add_cog(quote_quiz.QuoteQuiz(QUOTES))
+  bot.add_cog(eight_ball.EightBall())
   bot.run(token)
 
 
