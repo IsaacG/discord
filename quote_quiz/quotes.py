@@ -176,6 +176,11 @@ class QuoteQuiz(commands.Cog):
       await ctx.send('%s, that is not it.' % ctx.author.display_name)
 
   @commands.command()
+  async def reload_cache(self, ctx):
+    self.quotes.LoadQuotes()
+    await ctx.send('ok')
+
+  @commands.command()
   async def hint(self, ctx):
     if not self.IsActive(ctx):
       return
@@ -210,7 +215,7 @@ def main():
   token = os.getenv('DISCORD_TOKEN')
   if token is None:
     raise Exception('Token not found')
-  bot = commands.Bot(command_prefix='!')
+  bot = commands.Bot(command_prefix='?')
   bot.add_cog(QuoteQuiz())
   bot.run(os.getenv('DISCORD_TOKEN'))
 
